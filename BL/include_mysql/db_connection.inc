@@ -9,7 +9,7 @@
    $DBPassword = "";
    
 //connect to database 
- $dsn ="odbc:MySQLBeispielLogin";
+ $dsn ="odbc:MySQL151";
 echo "<font color='red'>DIL Data Interface Layer [ODBC] to MySQL</font><br>";
 $dbconn= new PDO($dsn,$user,$pw);
 ?>
