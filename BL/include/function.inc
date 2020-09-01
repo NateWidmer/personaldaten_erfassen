@@ -22,8 +22,7 @@
 
 
 function register_new_user($dbconn, $vorname, $nachname, $geburtstag, $email, $ahv, $personal, $telefon, $abteilung, $berufsbez, $beschreibung)
-{
-         
+{         
    $Query  = "INSERT INTO personaldaten(nachname, vorname, geburtstag, email, ahv_nr, personal_nr, telefon, fk_firmendaten)";
    $Query .=" VALUES ('".$nachname."', '".$vorname."', '".$geburtstag."', '".$email."', '".$ahv."', '".$personal."', '".$telefon."',";
    $Query .=" (SELECT id from firmendaten WHERE firmenname = 'Accenture' AND abteilung = '".$abteilung."'))";

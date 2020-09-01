@@ -36,7 +36,10 @@ $email = $_POST['email'];
 $ahv = $_POST['ahv_nr'];
 $personal = $_POST['personal_nr'];
 $telefon = $_POST['telefon'];
-$abteilung = $_POST['abteilung'];
+$abteilung = "";
+if (isset($_POST['abteilungen'])) {
+  $abteilung = $_POST['abteilungen'];
+}
 $berufsbez = $_POST['berufsbezeichnung'];
 $beschreibung = $_POST['beschreibung'];
 

@@ -23,15 +23,30 @@
         <div class="six columns">
           Nachname: <input type="text" name="nachname"></input><br><br>
           Vorname: <input type="text" name="vorname"></input><br><br>
-          Geb. Datum: <input type="date" id="start" name="geburtstag" value="2000-07-22" min="1900-01-01"
-            max="2020-08-25"><br><br>
+          Geb. Datum: <input type="date" id="start" name="geburtstag" value="2000-07-22" min="1900-01-01" max="2020-08-25"><br><br>
           Email: <input type="email" name="email"></input><br><br>
           AHV Nr.: <input type="text" name="ahv_nr"></input><br><br>
           Personal Nr.: <input type="number" name="personal_nr"></input><br><br>
           Telefon: <input type="text" name="telefon"></input><br><br>
         </div>
         <div class="six columns">
-          Abteilung: <input type="text" name="abteilung"></input><br><br>
+          Abteilung:
+          <select name="abteilungen">
+            <?php
+            include "../BL/include/db_connection.inc";
+            $sql = "SELECT * FROM firmendaten";
+
+            $stmt = $dbconn->prepare($sql);
+
+            $stmt->execute();
+
+            $results = $stmt->fetchAll();
+
+            foreach ($results as $result) : ?>
+              <option value="<?= $result['abteilung']; ?>"><?= $result['abteilung']; ?></option>
+            <?php endforeach; ?>
+          </select>
+          <br><br>
           Berufsbez.: <input id="berufsbezeichnung" name="berufsbezeichnung"></input><br><br>
           Beschreibung: <textarea name="beschreibung"></textarea><br><br>
         </div>
