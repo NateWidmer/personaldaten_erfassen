@@ -11,27 +11,33 @@
 </head>
 
 <body text="#000000" bgcolor="#FFFFFF" link="#FF0000" alink="#FF0000" vlink="#FF0000">
-  <h1>M151 5-Tier Architektur</h1>
 
-  <div class="row">
-    <form action="../BL/4_tier.php" METHOD="POST">
-      <div class="six columns">
-        Nachname: <input type="text" name="nachname"></input><br><br>
-        Vorname: <input type="text" name="vorname"></input><br><br>
-        Geb. Datum: <input type="date" id="start" name="trip-start" value="2000-07-22" min="1900-01-01"
-          max="2020-08-25"><br><br>
-        Email: <input type="email" name="email"></input><br><br>
-        AHV Nr.: <input type="text" name="ahv_nr"></input><br><br>
-        Personal Nr.: <input type="number" name="personal_nr"></input><br><br>
-        Telefon: <input type="text" name="telefon"></input><br><br>
+  <div class="container">
+    <div class="row">
+      <div class="three columns">
+        <h1>M151 5-Tier Architektur</h1>
       </div>
-      <div class="six columns">
-        Abteilung: <input type="text" name="abteilung"></input><br><br>
-        Berufsbez.: <select id="berufsbezeichnung" name="berufsbezeichnung"></select><br><br>
-        Beschreibung: <textarea name="beschreibung"></textarea><br><br>
-      </div>
-      <INPUT TYPE=SUBMIT NAME="cmd_login" VALUE="Erfassen" ID="cmd_login">
-    </form>
+    </div>
+    <div class="row">
+      <form action="../BL/4_tier.php" METHOD="POST">
+        <div class="six columns">
+          Nachname: <input type="text" name="nachname"></input><br><br>
+          Vorname: <input type="text" name="vorname"></input><br><br>
+          Geb. Datum: <input type="date" id="start" name="trip-start" value="2000-07-22" min="1900-01-01"
+            max="2020-08-25"><br><br>
+          Email: <input type="email" name="email"></input><br><br>
+          AHV Nr.: <input type="text" name="ahv_nr"></input><br><br>
+          Personal Nr.: <input type="number" name="personal_nr"></input><br><br>
+          Telefon: <input type="text" name="telefon"></input><br><br>
+        </div>
+        <div class="six columns">
+          Abteilung: <input type="text" name="abteilung"></input><br><br>
+          Berufsbez.: <select id="berufsbezeichnung" name="berufsbezeichnung"></select><br><br>
+          Beschreibung: <textarea name="beschreibung"></textarea><br><br>
+        </div>
+        <INPUT TYPE=SUBMIT NAME="cmd_login" VALUE="Erfassen" ID="cmd_login">
+      </form>
+    </div>
   </div>
 </body>
 
