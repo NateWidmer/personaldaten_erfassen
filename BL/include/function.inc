@@ -21,32 +21,22 @@
 /*************************************************/
 
 
-
-
-function check_user_password($dbconn, $cVorname, $cNachname)
+function register_new_user($dbconn, $vorname, $nachname, $geburtstag, $email, $ahv, $personal, $telefon, $abteilung, $berufsbez, $beschreibung)
 {
-// Check User Password conbination
-// Return Value is true for valid User, Password Combination
-//              is false for invalid User, Password combination
          
-   $Query  = "select count(*) as logon_status from personal";
-   $Query .=" where vorname='".$cVorname. "'";
-   $Query .=" AND nachname='".$cNachname. "'";
+   $Query  = "INSERT INTO personaldaten(nachname, vorname, geburtstag, email, ahv_nr, personal_nr, telefon, fk_firmendaten)";
+   $Query .=" VALUES ('".$nachname."', '".$vorname."', '".$geburtstag."', '".$email."', '".$ahv."', '".$personal."', '".$telefon."',";
+   $Query .=" (SELECT id from firmendaten WHERE firmenname = 'Accenture' AND abteilung = '".$abteilung."'))";
  
    echo "<font color='red'>DL Data Layer [DB]</font><br>".  $Query;;   
   //Execution of Querry
-    foreach ($dbconn->query($Query) as $row) {
-//        print_r($row);
-        $logon_status = $row["logon_status"];
-   }
-
-  // Result of Vorname, Nachname combination
-  if ($logon_status > 0)
-  {
+  if($dbconn->query($Query) === TRUE) {
+    echo "SUCCESS";
     return 1;
+  } else {
+    "NO";
+    return -1;
   }
-
-  return -1;
 }
 
 ?>
