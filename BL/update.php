@@ -3,6 +3,9 @@
 require_once("./include/function.inc");
 require_once("./include/db_connection.inc");
 
+echo "HELLO FECKER";
+
+$id = $_POST['id'];
 $nachname = $_POST['nachname'];
 $vorname = $_POST['vorname'];
 $geburtstag = $_POST['geburtstag'];
@@ -15,4 +18,4 @@ if (isset($_POST['abteilungen'])) {
   $abteilung = $_POST['abteilungen'];
 }
 
-register_new_user($dbconn, $vorname, $nachname, $geburtstag, $email, $ahv, $personal, $telefon, $abteilung);
+update_user_data($dbconn, $id, $vorname, $nachname, $geburtstag, $email, $ahv, $personal, $telefon, $abteilung);
