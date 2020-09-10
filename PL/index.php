@@ -27,7 +27,7 @@
 
         $.ajax({
           type: 'post',
-          url: '../BL/4_tier.php',
+          url: '../BL/post.php',
           data: $('#personal_form').serialize(),
           success: function() {
             alert('form was submitted');

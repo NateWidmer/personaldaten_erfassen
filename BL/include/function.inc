@@ -108,7 +108,7 @@ echo "        <form id='personal_form_update' METHOD='POST'>
                     Email: <br><input type='email' value=" .$row['email'] . " name='email'></input><br><br>
                     AHV Nr.: <br><input type='text' value=" .$row['ahv_nr'] . " name='ahv_nr'></input><br><br>
                     Personal Nr.: <br><input type='number' value=" .$row['personal_nr'] . " name='personal_nr'></input><br><br>
-                    Telefon: <br><input type='text' value=" .$row['telefon'] . " name='telefon'></input><br><br>
+                    Telefon: <br><input name='telefon' type='text' value=" .$row['telefon'] . "></input><br><br>
        </div>
                <div class='six columns'>
           Abteilung:<br>
