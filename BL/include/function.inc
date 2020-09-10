@@ -121,8 +121,8 @@ echo "        <form id='personal_form_update' METHOD='POST'>
 ";
 endforeach;
 
-
   $dbconn->query($getQuery);
+
 }
 
 function update_user_data($dbconn, $id, $vorname, $nachname, $geburtstag, $email, $ahv, $personal, $telefon, $abteilung) {

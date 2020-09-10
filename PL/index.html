@@ -30,7 +30,7 @@
           url: '../BL/post.php',
           data: $('#personal_form').serialize(),
           success: function() {
-            alert('form was submitted');
+            location.reload();
           }
         });
 
@@ -41,7 +41,9 @@
     function deleteUser(deleteId) {
       $.post('../BL/delete.php', {
         delete_id: deleteId,
-        function(delete_id) {}
+        function() {
+          location.reload();
+        }
       });
     }
 
@@ -65,7 +67,7 @@
           url: '../BL/update.php',
           data: $('#personal_form_update').serialize() + "&id=" + userId,
           success: function() {
-            alert('form update was submitted');
+            location.reload();
           }
         });
 
