@@ -126,7 +126,7 @@ endforeach;
 }
 
 function update_user_data($dbconn, $id, $vorname, $nachname, $geburtstag, $email, $ahv, $personal, $telefon, $abteilung) {
-  $updateQuery = "UPDATE personaldaten SET nachname='".$nachname."', vorname='".$vorname."', geburtstag='".$geburtstag."', email='".$email."', ahv_nr='".$ahv."', personal_nr='".$personal."', telefon='".$telefon."', fk_firmendaten=(SELECT id from firmendaten WHERE firmenname = 'Accenture' AND abteilung = '".$abteilung."')) WHERE id='".$id."'";
+  $updateQuery = "UPDATE personaldaten SET nachname='".$nachname."', vorname='".$vorname."', geburtstag='".$geburtstag."', email='".$email."', ahv_nr='".$ahv."', personal_nr='".$personal."', telefon='".$telefon."', fk_firmendaten=(SELECT id from firmendaten WHERE firmenname = 'Accenture' AND abteilung = '".$abteilung."') WHERE id=".$id."";
 
   $dbconn->query($updateQuery);
 

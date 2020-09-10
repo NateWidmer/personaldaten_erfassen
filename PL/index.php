@@ -60,13 +60,12 @@
 
         e.preventDefault();
 
-        var myData = $('#personal_form_update').serialize() + "&id=" + userId;
-        console.log(":)))", data);
+        var data = $('#personal_form_update').serialize() + "&id=" + userId;
+        console.log(":)))");
 
         $.post('../BL/update.php', {
-          data: myData,
+          data,
           function() {
-            console.log(":)");
           }
         });
 

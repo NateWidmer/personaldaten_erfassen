@@ -19,3 +19,5 @@ if (isset($_POST['abteilungen'])) {
 }
 
 update_user_data($dbconn, $id, $vorname, $nachname, $geburtstag, $email, $ahv, $personal, $telefon, $abteilung);
+
+
