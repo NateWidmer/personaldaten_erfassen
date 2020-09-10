@@ -60,12 +60,12 @@
 
         e.preventDefault();
 
-        var data = $('#personal_form_update').serialize() + "&id=" + userId;
-        console.log(":)))");
-
-        $.post('../BL/update.php', {
-          data,
-          function() {
+        $.ajax({
+          type: 'post',
+          url: '../BL/update.php',
+          data: $('#personal_form_update').serialize() + "&id=" + userId,
+          success: function() {
+            alert('form update was submitted');
           }
         });
 
