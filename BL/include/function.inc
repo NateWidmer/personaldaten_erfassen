@@ -105,6 +105,7 @@ function get_user_by_id($dbconn, $id) {
 
 foreach ($rows as $row) :
 echo "        <form id='personal_form_update' METHOD='POST'>
+        <h3>Personalaktualisierung</h3>
 <div class='row'>
         <div class='four columns'>
                     Nachname: <br><input type='text' value=" .$row['nachname'] . " name='nachname'></input><br><br>
@@ -138,6 +139,10 @@ function update_user_data($dbconn, $id, $vorname, $nachname, $geburtstag, $email
 
 }
 
+function register_new_department($dbconn, $abteilung, $berufsbezeichnung, $berufsbeschreibung) {
+  $newDepartmentQuery = "INSERT INTO firmendaten(firmenname, abteilung, berufsbezeichnung, berufsbeschreibung) VALUES('Accenture', '".$abteilung."', '".$berufsbezeichnung."', '".$berufsbeschreibung."')";
+
+  $dbconn->query($newDepartmentQuery);
+}
+
 ?>
-
-

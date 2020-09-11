@@ -7,6 +7,6 @@
    $DBPassword = "";
    
 //connect to database 
-$dsn ="odbc:MYSQL151";
+$dsn ="odbc:MSSQL151";
 $dbconn= new PDO($dsn,$user,$pw);
 ?>

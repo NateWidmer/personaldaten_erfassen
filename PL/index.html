@@ -38,6 +38,25 @@
 
     });
 
+    $(function () {
+
+      $('#firma_form').on('submit', function (e) {
+
+        e.preventDefault();
+
+        $.ajax({
+          type: 'post',
+          url: '../BL/addDepartment.php',
+          data: $('#firma_form').serialize(),
+          success: function () {
+            location.reload();
+          }
+        });
+
+      });
+
+    });
+
     function deleteUser(deleteId) {
       $.post('../BL/delete.php', {
         delete_id: deleteId,
@@ -87,6 +106,7 @@
     </div>
     <div id="form">
       <form id="personal_form" METHOD="POST">
+        <h3>Personalerfassung</h3>
         <div class="row">
           <div class="four columns">
             <label>Nachname</label> <br><input type="text" name="nachname"></input><br><br>
@@ -104,6 +124,19 @@
             </select>
             <br><br>
             <INPUT TYPE=SUBMIT NAME="register_user" class="button" VALUE="Erfassen" ID="register_user">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div id="form2">
+      <form id="firma_form" METHOD="POST">
+        <h3>Abteilungserfassung</h3>
+        <div class="row">
+          <div class="four columns">
+            <label>Abteilung</label><br><input type="text" name="abteilung"></input><br><br>
+            <label>Berufsbezeichnung</label><br><input type="text" name="berufsbezeichnung"></input><br><br>
+            <label>Berufsbeschreibung</label><br><input type="text" name="berufsbeschreibung"><br><br>
+            <INPUT TYPE=SUBMIT NAME="register_department" class="button" VALUE="Erfassen" ID="register_department">
           </div>
         </div>
       </form>
