@@ -1,7 +1,5 @@
 <?php   
 
-   $user = "M151";
-   $pass = "M151";
    $user = "root";
    $pw = "";
    $toReturn = "";
