@@ -18,7 +18,7 @@
 }
 
 .row {
-    justify-content: center;
+    justify-content: left;
     display: flex;
     width: 100%;
 }
@@ -164,3 +164,101 @@
     clear: both;
 }
 
+  
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
+* {
+  font-family: 'Open Sans', sans-serif;
+}
+
+/*
+FORM STYLES
+*/
+
+input {
+    margin-top: 10px;
+}
+
+input[type=text] {
+    padding:10px;
+    border:0;
+    box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.3);
+  }
+
+  input[type=email] {
+    padding:10px;
+    border:0;
+    box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.3);
+  }
+
+  input[type=number] {
+    padding:10px;
+    border:0;
+    box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.3);
+}
+
+  input[type=date] {
+    padding:10px;
+    border:0;
+    box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.3);
+}
+
+  select {
+    width: 100%;
+    height: 35px;
+    -moz-padding-start: 7px;
+    padding-left: 10px;
+    font-size: 14px;
+    box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.3);
+    background-color: transparent;
+    margin-top: 10px;
+  }
+
+  .button {
+    display: inline-block;
+    padding: 0.2em 1.45em;
+    margin: 0.1em;
+    border: 0.15em solid #DDDDDD;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Segoe UI','Roboto',sans-serif;
+    font-weight: 400;
+    color:#000000;
+    background-color:#DDDDDD;
+    text-align:center;
+    position:relative;
+    box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.3);
+}
+
+    .button:hover {
+    background-color:#CCCCCC;
+    border: 0.15em solid #CCCCCC;
+
+}
+
+/*
+TABLE STYLES
+*/
+
+table {
+    border: solid 1px #CCCCCC;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font: normal 13px Arial, sans-serif;
+}
+thead th {
+    background-color: #DDDDDD;
+    border: solid 1px #CCCCCC;
+    color: #222222;
+    padding: 10px;
+    text-align: left;
+    text-shadow: 1px 1px 1px #fff;
+}
+tbody td {
+    border: solid 1px #CCCCCC;
+    color: #333;
+    padding: 10px;
+    text-shadow: 1px 1px 1px #fff;
+}
+
+
+  

@@ -56,6 +56,7 @@ function get_registered_users($dbconn) {
         $results = $stmt->fetchAll();
 
         echo "<table border='1'>
+<thead>
 <tr>
 <th>Nachname</th>
 <th>Vorname</th>
@@ -64,8 +65,9 @@ function get_registered_users($dbconn) {
 <th>AHV-Nr.</th>
 <th>Personalnr.</th>
 <th>Telefon</th>
-
-</tr>";
+</tr>
+</thead>
+<tbody>";
 
 foreach ($results as $result) :
   echo "<tr>";
@@ -76,11 +78,13 @@ foreach ($results as $result) :
   echo "<td>" . $result['ahv_nr'] . "</td>";
   echo "<td>" . $result['personal_nr'] . "</td>";
   echo "<td>" . $result['telefon'] . "</td>";
-  echo "<td><button value=" .$result['id'] . " onclick=updateUser(" . $result['id'] . ")>Bearbeiten</button></td>";
-  echo "<td><button value=" .$result['id'] . " onclick=deleteUser(" . $result['id'] . ")>Löschen</button></td>";
+  echo "<td><button class='button' value=" .$result['id'] . " onclick=updateUser(" . $result['id'] . ")>Bearbeiten</button></td>";
+  echo "<td><button class='button' value=" .$result['id'] . " onclick=deleteUser(" . $result['id'] . ")>Löschen</button></td>";
   echo "</tr><br>";
 endforeach;
 }
+
+echo "</tbody>";
 
 function delete_user_by_id($dbconn, $id) {
 
@@ -101,7 +105,8 @@ function get_user_by_id($dbconn, $id) {
 
 foreach ($rows as $row) :
 echo "        <form id='personal_form_update' METHOD='POST'>
-        <div class='six columns'>
+<div class='row'>
+        <div class='four columns'>
                     Nachname: <br><input type='text' value=" .$row['nachname'] . " name='nachname'></input><br><br>
                     Vorname: <br><input type='text' value=" .$row['vorname'] . " name='vorname'></input><br><br>
                     Geb. Datum: <br><input type='date' id='start' name='geburtstag' value=" .$row['geburtstag'] . " min='1900-01-01' max='2020-08-25'><br><br>
@@ -110,13 +115,14 @@ echo "        <form id='personal_form_update' METHOD='POST'>
                     Personal Nr.: <br><input type='number' value=" .$row['personal_nr'] . " name='personal_nr'></input><br><br>
                     Telefon: <br><input name='telefon' type='text' value=" .$row['telefon'] . "></input><br><br>
        </div>
-               <div class='six columns'>
+               <div class='four columns'>
           Abteilung:<br>
                     <select id='abteilungSelect' name='abteilungen'>
           </select>
           <br><br>
+            <INPUT TYPE=SUBMIT class='button' NAME='register_user' VALUE='Aktualisieren' onclick='updateUserData(" .$row['id'] .")' ID='update_user'>
         </div>
-                <INPUT TYPE=SUBMIT NAME='register_user' VALUE='Aktualisieren' onclick='updateUserData(" .$row['id'] .")' ID='update_user'>
+        </div>
       </form>                
 ";
 endforeach;

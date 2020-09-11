@@ -10,18 +10,18 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script language="javascript" type="text/javascript">
-    $(document).ready(function() {
-      $.get("../BL/getUserList.php", function(data) {
+    $(document).ready(function () {
+      $.get("../BL/getUserList.php", function (data) {
         $("#personal_list").html(data);
       });
-      $.get("../BL/select.php", function(data) {
+      $.get("../BL/select.php", function (data) {
         $("#abteilungSelect").html(data);
       })
     });
 
-    $(function() {
+    $(function () {
 
-      $('#personal_form').on('submit', function(e) {
+      $('#personal_form').on('submit', function (e) {
 
         e.preventDefault();
 
@@ -29,7 +29,7 @@
           type: 'post',
           url: '../BL/post.php',
           data: $('#personal_form').serialize(),
-          success: function() {
+          success: function () {
             location.reload();
           }
         });
@@ -50,15 +50,15 @@
     function updateUser(id) {
       $('#form').load('../BL/getSingleUser.php', {
         id: id
-      }, function() {
-        $.get("../BL/select.php", function(data) {
+      }, function () {
+        $.get("../BL/select.php", function (data) {
           $("#abteilungSelect").html(data);
         })
       });
     }
 
     function updateUserData(userId) {
-      $('#personal_form_update').on('submit', function(e) {
+      $('#personal_form_update').on('submit', function (e) {
 
         e.preventDefault();
 
@@ -66,7 +66,7 @@
           type: 'post',
           url: '../BL/update.php',
           data: $('#personal_form_update').serialize() + "&id=" + userId,
-          success: function() {
+          success: function () {
             location.reload();
           }
         });
@@ -81,28 +81,31 @@
 
   <div class="container">
     <div class="row">
-      <div class="three columns">
+      <div class="five columns">
         <h1>M151 5-Tier Architektur</h1>
       </div>
     </div>
-    <div id="form" class="row">
+    <div id="form">
       <form id="personal_form" METHOD="POST">
-        <div class="six columns">
-          Nachname: <br><input type="text" name="nachname"></input><br><br>
-          Vorname: <br><input type="text" name="vorname"></input><br><br>
-          Geb. Datum: <br><input type="date" id="start" name="geburtstag" value="2000-07-22" min="1900-01-01" max="2020-08-25"><br><br>
-          Email: <br><input type="email" name="email"></input><br><br>
-          AHV Nr.: <br><input type="text" name="ahv_nr"></input><br><br>
-          Personal Nr.: <br><input type="number" name="personal_nr"></input><br><br>
-          Telefon: <br><input type="text" name="telefon"></input><br><br>
+        <div class="row">
+          <div class="four columns">
+            <label>Nachname</label> <br><input type="text" name="nachname"></input><br><br>
+            <label>Vorname</label> <br><input type="text" name="vorname"></input><br><br>
+            <label>Geb. Datum</label> <br><input type="date" id="start" name="geburtstag" value="2000-07-22"
+              min="1900-01-01" max="2020-08-25"><br><br>
+            <label>Email</label> <br><input type="email" name="email"></input><br><br>
+            <label>AHV Nr.</label> <br><input type="text" name="ahv_nr"></input><br><br>
+            <label>Personal Nr.</label> <br><input type="number" name="personal_nr"></input><br><br>
+            <label>Telefon</label> <br><input type="text" name="telefon"></input><br><br>
+          </div>
+          <div class="four columns">
+            <label>Abteilung</label><br>
+            <select id="abteilungSelect" name="abteilungen">
+            </select>
+            <br><br>
+            <INPUT TYPE=SUBMIT NAME="register_user" class="button" VALUE="Erfassen" ID="register_user">
+          </div>
         </div>
-        <div class="six columns">
-          Abteilung:<br>
-          <select id="abteilungSelect" name="abteilungen">
-          </select>
-          <br><br>
-        </div>
-        <INPUT TYPE=SUBMIT NAME="register_user" VALUE="Erfassen" ID="register_user">
       </form>
     </div>
     <div class="row">
