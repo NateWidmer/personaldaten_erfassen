@@ -1,0 +1,147 @@
+/*
+SQLyog Community v13.1.6 (64 bit)
+MySQL - 10.1.37-MariaDB : Database - personaldaten
+*********************************************************************
+*/
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`personaldaten` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
+
+USE `personaldaten`;
+
+/*Table structure for table `firmendaten` */
+
+DROP TABLE IF EXISTS `firmendaten`;
+
+CREATE TABLE `firmendaten` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `firmenname` varchar(50) COLLATE utf8_bin NOT NULL,
+  `abteilung` varchar(50) COLLATE utf8_bin NOT NULL,
+  `berufsbezeichnung` varchar(50) COLLATE utf8_bin NOT NULL,
+  `berufsbeschreibung` text COLLATE utf8_bin,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `abteilung` (`abteilung`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+/*Data for the table `firmendaten` */
+
+insert  into `firmendaten`(`id`,`firmenname`,`abteilung`,`berufsbezeichnung`,`berufsbeschreibung`) values 
+(3,'Accenture','IT','',''),
+(4,'Accenture','Medien','KV',''),
+(6,'Accenture','Administration','KV',''),
+(7,'Accenture','Marketing','Kaufmann/frau','Ein/e Kaufmann/frau');
+
+/*Table structure for table `personaldaten` */
+
+DROP TABLE IF EXISTS `personaldaten`;
+
+CREATE TABLE `personaldaten` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nachname` varchar(50) COLLATE utf8_bin NOT NULL,
+  `vorname` varchar(50) COLLATE utf8_bin NOT NULL,
+  `geburtstag` date NOT NULL,
+  `email` varchar(50) COLLATE utf8_bin NOT NULL,
+  `ahv_nr` varchar(50) COLLATE utf8_bin NOT NULL,
+  `personal_nr` int(3) NOT NULL,
+  `telefon` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `fk_firmendaten` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ahv_nr` (`ahv_nr`,`personal_nr`),
+  UNIQUE KEY `personal_nr` (`personal_nr`),
+  UNIQUE KEY `ahv_nr_2` (`ahv_nr`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `ahv_nr_3` (`ahv_nr`),
+  UNIQUE KEY `email_2` (`email`),
+  KEY `fk_firmendaten` (`fk_firmendaten`),
+  CONSTRAINT `fk_firmendaten` FOREIGN KEY (`fk_firmendaten`) REFERENCES `firmendaten` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+/*Data for the table `personaldaten` */
+
+insert  into `personaldaten`(`id`,`nachname`,`vorname`,`geburtstag`,`email`,`ahv_nr`,`personal_nr`,`telefon`,`fk_firmendaten`) values 
+(37,'Widmer','Nathan','2001-09-12','nate.a.widmer@gmail.com','7283.283.213.233',1,'0792947099',3),
+(38,'Blattmann','Sina','2000-07-22','sina@gmail.com','2122.348.342.332',2,'0792631711',3),
+(46,'Holzmann','Muster','2000-07-22','muster@gmail.com','776.9384.358.330',6,'',4),
+(47,'Black','Sebastian','2000-07-03','black@gmail.com','776.9384.352.333',4,'',3);
+
+/*Table structure for table `protokoll` */
+
+DROP TABLE IF EXISTS `protokoll`;
+
+CREATE TABLE `protokoll` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `datum` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `email` varchar(50) COLLATE utf8_bin NOT NULL,
+  `funktion` varchar(20) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+/*Data for the table `protokoll` */
+
+insert  into `protokoll`(`id`,`datum`,`email`,`funktion`) values 
+(1,'2020-09-10 15:49:33','zollinger@gmail.com','UPDATE'),
+(2,'2020-09-10 16:11:30','nate.a.widmer@gmail.com','UPDATE'),
+(3,'2020-09-10 16:12:10','muster@gmail.com','INSERT'),
+(4,'2020-09-10 16:12:35','max@gmail.com','DELETE'),
+(5,'2020-09-10 16:32:32','zollinger@gmail.com','UPDATE'),
+(6,'2020-09-11 14:23:26','holz@gmail.com','DELETE'),
+(7,'2020-09-11 14:23:44','muster@gmail.com','UPDATE'),
+(8,'2020-09-11 14:25:02','black@gmail.com','INSERT'),
+(9,'2020-09-11 15:13:21','zollinger@gmail.com','UPDATE'),
+(10,'2020-09-11 15:13:34','black@gmail.com','UPDATE'),
+(11,'2020-09-11 15:14:55','zollinger@gmail.com','DELETE'),
+(12,'2020-09-11 15:15:13','nate.a.widmer@gmail.com','UPDATE');
+
+/* Trigger structure for table `personaldaten` */
+
+DELIMITER $$
+
+/*!50003 DROP TRIGGER*//*!50032 IF EXISTS */ /*!50003 `after_insert_user` */$$
+
+/*!50003 CREATE */ /*!50017 DEFINER = 'root'@'localhost' */ /*!50003 TRIGGER `after_insert_user` AFTER INSERT ON `personaldaten` FOR EACH ROW 
+ INSERT INTO protokoll
+ SET email = NEW.email,
+     funktion = 'INSERT' */$$
+
+
+DELIMITER ;
+
+/* Trigger structure for table `personaldaten` */
+
+DELIMITER $$
+
+/*!50003 DROP TRIGGER*//*!50032 IF EXISTS */ /*!50003 `before_update_user` */$$
+
+/*!50003 CREATE */ /*!50017 DEFINER = 'root'@'localhost' */ /*!50003 TRIGGER `before_update_user` BEFORE UPDATE ON `personaldaten` FOR EACH ROW 
+ INSERT INTO protokoll
+ SET email = OLD.email,
+     funktion = 'UPDATE' */$$
+
+
+DELIMITER ;
+
+/* Trigger structure for table `personaldaten` */
+
+DELIMITER $$
+
+/*!50003 DROP TRIGGER*//*!50032 IF EXISTS */ /*!50003 `before_delete_user` */$$
+
+/*!50003 CREATE */ /*!50017 DEFINER = 'root'@'localhost' */ /*!50003 TRIGGER `before_delete_user` BEFORE DELETE ON `personaldaten` FOR EACH ROW 
+ INSERT INTO protokoll
+ SET email = OLD.email,
+     funktion = 'DELETE' */$$
+
+
+DELIMITER ;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

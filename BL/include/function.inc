@@ -26,12 +26,12 @@ function register_new_user($dbconn, $vorname, $nachname, $geburtstag, $email, $a
 
   $Query  = "INSERT INTO personaldaten(nachname, vorname, geburtstag, email, ahv_nr, personal_nr, telefon, fk_firmendaten)";
   $Query .=" VALUES ('".$nachname."', '".$vorname."', '".$geburtstag."', '".$email."', '".$ahv."', '".$personal."', '".$telefon."',";
-  $Query .=" (SELECT id from firmendaten WHERE firmenname = 'Accenture' AND abteilung = '".$abteilung."'))";
+  $Query .=" (SELECT id from firmendaten WHERE firmenname = 'Example Company' AND abteilung = '".$abteilung."'))";
    
   $dbconn->query($Query);
 }
 
-function get_departements($dbconn) {
+function get_departments($dbconn) {
   $sql = "SELECT * FROM firmendaten";
 
   $stmt = $dbconn->prepare($sql);
@@ -133,14 +133,14 @@ endforeach;
 }
 
 function update_user_data($dbconn, $id, $vorname, $nachname, $geburtstag, $email, $ahv, $personal, $telefon, $abteilung) {
-  $updateQuery = "UPDATE personaldaten SET nachname='".$nachname."', vorname='".$vorname."', geburtstag='".$geburtstag."', email='".$email."', ahv_nr='".$ahv."', personal_nr='".$personal."', telefon='".$telefon."', fk_firmendaten=(SELECT id from firmendaten WHERE firmenname = 'Accenture' AND abteilung = '".$abteilung."') WHERE id=".$id."";
+  $updateQuery = "UPDATE personaldaten SET nachname='".$nachname."', vorname='".$vorname."', geburtstag='".$geburtstag."', email='".$email."', ahv_nr='".$ahv."', personal_nr='".$personal."', telefon='".$telefon."', fk_firmendaten=(SELECT id from firmendaten WHERE firmenname = 'Example Company' AND abteilung = '".$abteilung."') WHERE id=".$id."";
 
   $dbconn->query($updateQuery);
 
 }
 
 function register_new_department($dbconn, $abteilung, $berufsbezeichnung, $berufsbeschreibung) {
-  $newDepartmentQuery = "INSERT INTO firmendaten(firmenname, abteilung, berufsbezeichnung, berufsbeschreibung) VALUES('Accenture', '".$abteilung."', '".$berufsbezeichnung."', '".$berufsbeschreibung."')";
+  $newDepartmentQuery = "INSERT INTO firmendaten(firmenname, abteilung, berufsbezeichnung, berufsbeschreibung) VALUES('Example Company', '".$abteilung."', '".$berufsbezeichnung."', '".$berufsbeschreibung."')";
 
   $dbconn->query($newDepartmentQuery);
 }
